@@ -22,7 +22,6 @@ export async function POST() {
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
-      payment_method_types: ['card', 'p24', 'blik'],
       line_items: [
         {
           price_data: {
@@ -30,8 +29,7 @@ export async function POST() {
             unit_amount: 4700,
             product_data: {
               name: 'Mechanizm Kontroli — Ebook PDF',
-              description:
-                'Jak odzyskać kontrolę nad swoją uwagą w świecie zaprojektowanym, by Cię uzależnić',
+              description: 'Jak odzyskać kontrolę nad swoją uwagą w świecie zaprojektowanym, by Cię uzależnić',
             },
           },
           quantity: 1,
