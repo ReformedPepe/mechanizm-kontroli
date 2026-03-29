@@ -5,7 +5,16 @@ export const dynamic = 'force-dynamic'
 
 export async function POST() {
   try {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    if (!stripeSecretKey) {
+      console.error('[checkout] STRIPE_SECRET_KEY is not set');
+      return NextResponse.json(
+        { error: 'Internal Server Error' },
+        { status: 500 }
+      );
+    }
+
+    const stripe = new Stripe(stripeSecretKey, {
       apiVersion: '2025-02-24.acacia',
     })
 
@@ -36,6 +45,8 @@ export async function POST() {
   } catch (error) {
     const message =
       error instanceof Error ? error.message : 'Unknown error occurred'
+
+    console.error('[checkout] Stripe error:', message)
 
     return NextResponse.json(
       { error: message },
