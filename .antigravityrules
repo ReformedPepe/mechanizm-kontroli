@@ -1,0 +1,117 @@
+# PĘTLA DOPAMINOWA — CORE RULES
+# Odwołuj się do tego pliku na początku każdej sesji
+
+## PRODUKT
+- Nazwa: Pętla Dopaminowa
+- Podtytuł: Jak odzyskać kontrolę nad swoją uwagą w świecie zaprojektowanym, by Cię uzależnić
+- Cena: 47 zł (stara: 97 zł)
+- Format: PDF ebook ~30–35 stron
+- Platforma: Next.js 14 (App Router) + Tailwind CSS + Framer Motion + Lucide React
+
+## STACK — NIGDY NIE ZMIENIAJ
+- Framework: Next.js 14 App Router
+- Styling: Tailwind CSS v3 z custom paletą (tailwind.config.ts)
+- Animacje: Framer Motion ("use client" gdzie potrzeba)
+- Ikony: Lucide React
+- Czcionki: JetBrains Mono (nagłówki/brand) + DM Sans (body) — przez next/font/google
+- Płatności: Stripe (Checkout Sessions + Webhooks + P24/BLIK)
+- Email: Resend
+- Deployment: Vercel
+
+## PALETA KOLORÓW — NIGDY NIE ZMIENIAJ
+bg:     #0D1117   (tło główne)
+bg2:    #161B22   (karty, sekcje)
+bg3:    #1C2128   (głębsze elementy)
+orange: #F97316   (CTA, akcenty, H3, brand)
+purple: #7C3AED   (H2, linki, akcenty drugorzędne)
+blue:   #38BDF8   (callout boxy, bonusy, cytaty)
+text:   #E2E8F0   (body na ciemnym tle)
+muted:  #8B949E   (opisy, tekst drugorzędny)
+
+## TYPOGRAFIA — ZASADY
+- H1/H2/brand/CTA/numery: font-mono (JetBrains Mono)
+- Body/opisy/listy: font-sans (DM Sans)
+- NIGDY: Inter, Roboto, Arial jako główna czcionka
+- Przyciski ZAWSZE w 1. osobie: "Chcę" / "Odzyskuję" / "Zaczynam"
+
+## COPY — ZASADY NIEPRZEKRACZALNE
+- Prosty język — jak człowiek do człowieka, ZERO metafor
+- KTO + NA CO CIERPI — pamiętaj w każdej sekcji
+- Korzyści NIE cechy: "Odzyskasz 700h" nie "30 stron treści"
+- ADHD adresowane wprost minimum 2x na stronie
+- Obiekcje w FAQ zanim klient je pomyśli
+
+## KLUCZOWE LICZBY DO COPY
+- 700 godzin rocznie zmarnowanych (2h x 365)
+- 6 000 zł miesięcznie = wartość zmarnowanej uwagi
+- 73 000 zł rocznie
+- 20 minut = powrót skupienia po 1 pingu
+- 15 minut = reset metodą STORE
+- 72 godziny = plan na start
+
+## PSYCHOLOGIA KONWERSJI — OBOWIĄZKOWE
+- Timer 48h (localStorage, NIE resetuje się po odświeżeniu!)
+- Social proof wysoko na stronie (statystyki w hero)
+- Sekcja produktu (#oferta) WYSOKO — tuż po hero
+- Multiple CTA: nav / hero / sekcja produktu / social proof / offer box / final CTA
+- Risk reversal: gwarancja 14 dni bez pytań
+- Kotwica cenowa: zawsze stara cena przekreślona obok nowej
+
+## STRUKTURA PROJEKTU
+app/
+  layout.tsx          — root layout, Meta Pixel przez next/script
+  page.tsx            — główna strona (import sekcji)
+  sukces/page.tsx     — strona po zakupie, odpala Purchase event
+  api/checkout/route.ts   — tworzy Stripe Checkout Session
+  api/webhook/route.ts    — odbiera webhook, wysyła email przez Resend
+
+components/sections/    — wszystkie sekcje strony
+components/ui/          — reużywalne komponenty (Timer, Accordion)
+lib/stripe.ts           — inicjalizacja Stripe
+lib/resend.ts           — inicjalizacja Resend + sendEbookEmail()
+lib/metaPixel.ts        — helper do Meta Pixel eventów
+
+## ENV VARIABLES (wymagane)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+RESEND_API_KEY=
+EBOOK_DOWNLOAD_URL=
+NEXT_PUBLIC_META_PIXEL_ID=
+NEXT_PUBLIC_URL=
+
+## REGUŁY TECHNICZNE
+- TypeScript strict mode — zawsze
+- "use client" tylko tam gdzie Framer Motion / hooks / localStorage
+- Server Components dla sekcji statycznych
+- Brak console.log w produkcji
+- Loading state na przycisku checkout (Lucide: Loader2)
+- Error handling na API routes z właściwymi HTTP status
+- Responsywność: mobile first, przyciski w-full na mobile
+- Na mobile: grid 1 kolumna, hero text-4xl → md:text-6xl
+
+## FRAMER MOTION — WZORCE (kopiuj dokładnie)
+Fade-in-up (hero, stagger):
+  initial={{ opacity: 0, y: 24 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: index * 0.1 }}
+
+whileInView (sekcje):
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+
+Accordion (AnimatePresence):
+  initial={{ height: 0, opacity: 0 }}
+  animate={{ height: 'auto', opacity: 1 }}
+  exit={{ height: 0, opacity: 0 }}
+  transition={{ duration: 0.3 }}
+
+Hover karty:
+  whileHover={{ scale: 1.02 }}
+  transition={{ type: 'spring', stiffness: 300 }}
+
+## META ADS — WYMAGANE EVENTY
+- PageView: automatycznie w layout.tsx
+- ViewContent: gdy sekcja produktu wchodzi w viewport
+- InitiateCheckout: klik przycisku CTA
+- Purchase: strona /sukces (value: 47, currency: 'PLN')
