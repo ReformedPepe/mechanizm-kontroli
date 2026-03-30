@@ -85,7 +85,7 @@ export default function FAQSection() {
           className="text-center mb-16 md:mb-24"
         >
           <span className="inline-block font-mono text-sm tracking-wide uppercase text-orange mb-4">
-            09 / FAQ
+            08 / FAQ
           </span>
           <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] leading-[1.2] mb-5 uppercase text-gradient">
             Najczęstsze pytania

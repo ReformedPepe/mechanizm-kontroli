@@ -15,7 +15,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 bg-bg/70 backdrop-blur-2xl border-b border-bg3/30">
+    <nav className="relative z-50 bg-bg border-b border-bg3/30">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <a href="#" className="font-mono text-base font-bold tracking-tight">
           <span className="text-orange">MECHANIZM</span>

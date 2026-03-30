@@ -9,7 +9,6 @@ import TwoOptionsSection from '@/components/sections/BeforeAfterSection'
 import MarqueeSeparator from '@/components/sections/MarqueeSeparator'
 import SocialProofSection from '@/components/sections/SocialProofSection'
 import ValueStackSection from '@/components/sections/ValueStackSection'
-import BonusSection from '@/components/sections/BonusSection'
 import FAQSection from '@/components/sections/FAQSection'
 import FinalCTASection from '@/components/sections/FinalCTASection'
 import Footer from '@/components/sections/Footer'
@@ -29,7 +28,6 @@ export default function Home() {
       <MarqueeSeparator />
       <SocialProofSection />
       <ValueStackSection />
-      <BonusSection />
       <FAQSection />
       <FinalCTASection />
       <Footer />

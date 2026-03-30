@@ -47,7 +47,7 @@ export default function SalesPopup() {
     const firstTimer = setTimeout(() => {
       setNotification(generateNotification())
       setIsVisible(true)
-    }, 8000)
+    }, 20000)
 
     const interval = setInterval(() => {
       // Hide current
@@ -59,7 +59,7 @@ export default function SalesPopup() {
         setIsVisible(true)
       }, 1000)
 
-    }, 35000) // Every 35 seconds (30s wait + ~5s visible time)
+    }, 90000) // Każde 90 sekund (rzadsze powiadomienia)
 
     return () => {
       clearTimeout(firstTimer)
@@ -72,7 +72,7 @@ export default function SalesPopup() {
     if (isVisible) {
       const timer = setTimeout(() => {
         setIsVisible(false)
-      }, 7000)
+      }, 5000) // Wyświetlaj przez 5 sekund zamiast 7
       return () => clearTimeout(timer)
     }
   }, [isVisible])
