@@ -13,8 +13,18 @@ function SukcesContent() {
 
   useEffect(() => {
     if (sessionId && !tracked) {
-      fbPurchase()
-      setTracked(true)
+      // Funkcja, która ponawia próbę odpalenia, dopóki Pixel się nie załaduje
+      const firePixelWhenReady = () => {
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          fbPurchase()
+          setTracked(true)
+        } else {
+          // Jeśli fbq jeszcze nie ma, spróbuj ponownie za 100ms
+          setTimeout(firePixelWhenReady, 100)
+        }
+      }
+
+      firePixelWhenReady()
     }
   }, [sessionId, tracked])
 
