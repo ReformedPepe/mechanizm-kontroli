@@ -4,19 +4,19 @@ import Marquee from '@/components/ui/magicui/marquee'
 
 const items = [
   '700 GODZIN ROCZNIE',
-  '6 000 ZŁ MIESIĘCZNIE',
-  'METODA STORE',
-  '72H PLAN',
-  'ADHD-FRIENDLY',
+  'ODZYSKANE WIECZORY',
+  'BEZ SILNEJ WOLI',
+  'KONIEC Z POCZUCIEM WINY',
+  'DZIAŁA PRZY ADHD',
   '2400+ CZYTELNIKÓW',
-  'RESET W 15 MINUT',
+  'NATYCHMIASTOWY DOSTĘP',
   'GWARANCJA 14 DNI',
 ]
 
 export default function MarqueeSeparator() {
   return (
     <div className="py-5 bg-bg2/50 border-y border-bg3/30 overflow-hidden">
-      <Marquee duration="25s" pauseOnHover repeat={5}>
+      <Marquee duration="50s" pauseOnHover repeat={5}>
         {items.map((item, i) => (
           <span
             key={i}

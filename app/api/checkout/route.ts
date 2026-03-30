@@ -30,6 +30,7 @@ export async function POST() {
             product_data: {
               name: 'Mechanizm Kontroli — Ebook PDF',
               description: 'Jak odzyskać kontrolę nad swoją uwagą w świecie zaprojektowanym, by Cię uzależnić',
+              images: ['https://www.mechanizmkontroli.pl/images/okladka.jpg'],
             },
           },
           quantity: 1,

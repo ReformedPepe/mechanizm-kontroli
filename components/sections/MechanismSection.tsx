@@ -41,7 +41,7 @@ export default function MechanismSection() {
           <span className="inline-block font-mono text-sm tracking-wide uppercase text-orange mb-4">
             06 / JAK TO DZIAŁA
           </span>
-          <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl font-bold text-purple tracking-[-0.02em] leading-[1.2] mb-5">
+          <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] leading-[1.2] mb-5 uppercase text-gradient">
             Dlaczego tym razem zadziała
           </h2>
           <p className="font-sans text-muted text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
@@ -52,7 +52,7 @@ export default function MechanismSection() {
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {mechanisms.map((m, i) => (
-          <motion.div
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}

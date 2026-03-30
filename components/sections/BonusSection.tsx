@@ -7,22 +7,22 @@ const bonuses = [
   {
     icon: <CheckSquare size={24} />,
     number: '#1',
-    title: 'Checklista Środowiska Cyfrowego',
-    description: '23 konkretne zmiany w telefonie i komputerze gotowe do wdrożenia dzisiaj.',
+    title: 'Coś co zajmuje 10 minut i sprawia że telefon przestań cię wciągać tak jak wcześniej',
+    description: 'Lista konkretnych zmian w swoim telefonie i komputerze gotowa do zrobienia dziś wieczorem. Bez teorii, krok po kroku.',
     value: '27 zł',
   },
   {
     icon: <Layers size={24} />,
     number: '#2',
-    title: 'Karta Metody STORE',
-    description: '5 kroków na każdy kryzysowy moment. Format A5 do wydruku lub tapeta telefonu.',
+    title: 'Jedna kartka którą kładziesz przy łóżku — i po tygodniu śpisz spokojniej',
+    description: 'Pięć kroków na każdy moment kiedy czujesz że zaraz znowu wpadniesz. Format do wydruku lub tapeta telefonu.',
     value: '19 zł',
   },
   {
     icon: <Calendar size={24} />,
     number: '#3',
-    title: 'Tracker 30-dniowy',
-    description: 'Codzienne check-iny: czy wdrożyłem STORE? Ile minut offline? Wizualny postęp.',
+    title: 'Sposób żeby zobaczyć czy naprawdę idzie ci lepiej — bez oszukiwania siebie',
+    description: 'Codzienne pytania do siebie żeby zobaczyć postęp. Nie dasz rady nie zauważyć że coś się zmienia.',
     value: '19 zł',
   },
 ]
@@ -41,14 +41,14 @@ export default function BonusSection() {
           <span className="inline-block font-mono text-sm tracking-wide uppercase text-blue/80 mb-4">
             08 / W CENIE EBOOKA
           </span>
-          <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl font-bold text-purple tracking-[-0.02em] leading-[1.2]">
+          <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] leading-[1.2] uppercase text-gradient">
             Dostajesz więcej niż ebook
           </h2>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {bonuses.map((bonus, i) => (
-          <motion.div
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export default function BonusSection() {
               <span className="font-mono text-sm text-muted/60 tracking-widest uppercase mb-2 block">
                 Bonus {bonus.number}
               </span>
-              <h3 className="font-mono text-orange text-lg md:text-xl font-bold mb-4 tracking-tight">
+              <h3 className="font-mono text-orange text-lg md:text-xl font-bold mb-4 tracking-tight uppercase">
                 {bonus.title}
               </h3>
               <p className="font-sans text-muted text-base leading-relaxed mb-6">

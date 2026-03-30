@@ -17,13 +17,16 @@ export default function AccordionItem({ title, children, index, icon, variant = 
 
   const activeStyles =
     variant === 'purple'
-      ? 'bg-[#7C3AED]/[0.08] border-[#7C3AED]/30'
-      : 'bg-[#F97316]/[0.06] border-[#F97316]/20'
-      
-  const baseStyles = 'bg-[#161B22] border-white/[0.06]'
+      ? 'bg-[#7C3AED]/[0.08] border-[#7C3AED]/30 shadow-xl shadow-purple/10'
+      : 'bg-[#F97316]/[0.06] border-[#F97316]/30 shadow-xl shadow-orange/10'
+
+  const baseStyles =
+    variant === 'purple'
+      ? 'bg-[#161B22] border-[#7C3AED]/20 shadow-lg shadow-purple/5'
+      : 'bg-[#161B22] border-[#F97316]/20 shadow-lg shadow-orange/5'
 
   return (
-    <div className={`border rounded overflow-hidden transition-colors duration-200 ${isOpen ? activeStyles : baseStyles}`}>
+    <div className={`rounded-xl overflow-hidden transition-all duration-300 border ${isOpen ? activeStyles : baseStyles}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left hover:bg-[#1C2128] transition-colors"

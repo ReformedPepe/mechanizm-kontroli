@@ -7,12 +7,12 @@ import { fbInitiateCheckout } from '@/lib/metaPixel'
 import AnimatedShinyText from '@/components/ui/magicui/animated-shiny-text'
 import NumberTicker from '@/components/ui/magicui/number-ticker'
 import ShimmerButton from '@/components/ui/magicui/shimmer-button'
-import DotPattern from '@/components/ui/magicui/dot-pattern'
+import BackgroundPaths from '@/components/ui/magicui/background-paths'
 
 const stats = [
-  { icon: <Clock size={18} />, value: 700, suffix: 'h', label: 'zmarnowanych rocznie' },
-  { icon: <BrainCircuit size={18} />, value: 6000, prefix: '', suffix: ' zł', label: 'wartość uwagi / mies.' },
-  { icon: <Zap size={18} />, value: 20, suffix: ' min', label: 'fokus stracony na 1 ping' },
+  { icon: <Clock size={18} />, value: 700, suffix: 'h', label: 'życia traconego rocznie' },
+  { icon: <BrainCircuit size={18} />, value: 6000, prefix: '', suffix: ' zł', label: 'wartość zmarnowanego czasu / mies.' },
+  { icon: <Zap size={18} />, value: 67, suffix: '%', label: 'osób odczuwa lęk bez telefonu' },
 ]
 
 export default function HeroSection() {
@@ -22,48 +22,18 @@ export default function HeroSection() {
     offset: ['start start', 'end start'],
   })
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const meshScale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
-
   const handleCTA = () => {
     fbInitiateCheckout()
     window.location.href = '#oferta'
   }
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden pt-32 md:pt-40 pb-20 md:pb-28 min-h-screen section-bg-primary">
-      {/* Dot pattern background */}
-      <DotPattern opacity={0.05} gap={24} dotSize={1} />
+    <section ref={sectionRef} className="relative overflow-hidden min-h-[100svh] flex flex-col justify-center py-20 md:py-24 section-bg-primary">
+      {/* Dynamic Paths Background */}
+      <BackgroundPaths />
 
-      {/* Grid lines background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '80px 80px',
-        }}
-      />
-
-      {/* Parallax gradient mesh */}
-      <motion.div
-        style={{ y: bgY, scale: meshScale }}
-        className="absolute inset-0 pointer-events-none [transform:translateZ(0)]"
-      >
-        <div
-          className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[160px]"
-          style={{ background: 'rgba(124,58,237,0.12)' }}
-        />
-        <div
-          className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full blur-[140px]"
-          style={{ background: 'rgba(249,115,22,0.08)' }}
-        />
-      </motion.div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 mt-8 md:mt-16">
-        <div className="max-w-[800px] mx-auto text-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center">
+        <div className="w-full max-w-[900px] mx-auto text-center">
           {/* Badge with shimmer effect */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -82,12 +52,12 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-mono text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-[-0.02em] mb-8"
+            className="font-mono text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-[-0.02em] mb-8 uppercase text-gradient"
           >
-            Twój mózg nie jest{' '}
-            <span className="text-orange">zepsuty</span>
+            Twój telefon{' '}
+            <span className="text-orange">niszczy ci życie.</span>
             <br />
-            <span className="text-purple">— jest zhakowany</span>
+            <span className="text-purple">I wiesz o tym.</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -97,9 +67,9 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-sans text-lg md:text-xl text-muted max-w-2xl mx-auto mb-14 leading-[1.6]"
           >
-            Tracisz <span className="text-text font-medium">700 godzin rocznie</span> na
-            scrollowanie bez celu. To nie kwestia silnej woli — to kwestia
-            środowiska. Nawet jeśli masz ADHD.
+            Wieczory których już <span className="text-purple font-bold">nie odzyskasz</span>. Relacje które <span className="text-purple font-bold">na tym cierpią</span>.
+            Poranne poczucie, że <span className="text-purple font-bold">znowu dałeś się wciągnąć</span>.{' '}
+            <span className="text-orange font-bold uppercase">Jest jeden sposób żeby to zatrzymać.</span>
           </motion.p>
 
           {/* CTA */}
@@ -107,13 +77,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-24"
+            className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16"
           >
             <ShimmerButton
               onClick={handleCTA}
-              className="w-full sm:w-auto font-mono font-bold text-base md:text-lg tracking-wider uppercase px-12 py-5 text-bg flex items-center justify-center gap-2"
+              className="w-full sm:w-auto font-mono font-bold text-base md:text-lg tracking-wider uppercase px-12 py-6 text-bg flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_rgba(249,115,22,0.5)] active:scale-[0.98]"
             >
-              Odzyskuję swój czas
+              Chcę to zatrzymać
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </ShimmerButton>
             <span className="text-muted text-base font-sans">
@@ -122,12 +92,11 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Stats with NumberTicker */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-5xl mx-auto"
           >
             {stats.map((stat, i) => (
               <div
@@ -135,7 +104,7 @@ export default function HeroSection() {
                 className="bg-bg2/40 backdrop-blur-sm border border-bg3/50 rounded-xl p-5 flex flex-col items-center gap-2"
               >
                 <span className="text-purple/70">{stat.icon}</span>
-                <span className="font-mono text-xl font-bold text-text">
+                <span className="font-mono text-xl font-bold text-orange">
                   <NumberTicker
                     value={stat.value}
                     suffix={stat.suffix}
