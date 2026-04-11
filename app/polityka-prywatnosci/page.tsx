@@ -22,26 +22,22 @@ export default function PrivacyPolicyPage() {
         <h1 className="font-mono text-4xl md:text-5xl font-bold text-purple tracking-[-0.02em] leading-[1.2] mb-4">
           Polityka Prywatności
         </h1>
-        <p className="font-mono text-sm text-muted/80 mb-16">
-          Ostatnia aktualizacja:{' '}
-          {/* UZUPEŁNIJ datę */}
-          [DD.MM.YYYY]
-        </p>
-
-        <div className="prose prose-invert prose-p:text-text/80 prose-headings:text-text prose-headings:font-mono prose-a:text-orange hover:prose-a:text-orange/80 max-w-none font-sans text-lg">
-          {/* UZUPEŁNIJ: pełna treść polityki prywatności */}
-          
-          <h2 className="text-2xl mt-12 mb-6 font-bold">1. Administrator danych</h2>
-          <p>
-            Administratorem danych osobowych jest:
-            <br />
-            {/* UZUPEŁNIJ: imię, nazwisko/firma, adres, email */}
-            [Imię Nazwisko / Nazwa Firmy]
-            <br />
-            [Adres]
-            <br />
-            Email: [adres email]
+          <p className="font-mono text-sm text-muted/80 mb-16">
+            Ostatnia aktualizacja:{' '}
+            11.04.2026
           </p>
+
+          <div className="prose prose-invert prose-p:text-text/80 prose-headings:text-text prose-headings:font-mono prose-a:text-orange hover:prose-a:text-orange/80 max-w-none font-sans text-lg">
+            {/* UZUPEŁNIJ: pełna treść polityki prywatności */}
+            
+            <h2 className="text-2xl mt-12 mb-6 font-bold">1. Administrator danych</h2>
+            <p>
+              Administratorem danych osobowych jest:
+              <br />
+              Wiktor Walinski
+              <br />
+              Email: walinski.wiktor@protonmail.com
+            </p>
 
           <h2 className="text-2xl mt-12 mb-6 font-bold">2. Jakie dane zbieramy</h2>
           <p>
